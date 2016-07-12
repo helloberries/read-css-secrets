@@ -1,0 +1,23 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* STYLING */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sewed-line {
+  background: #655;
+  border: 10px dashed #655;
+  outline: 2px dashed white;
+  outline-offset: -10px;
+
+  /* STYLING */
+  height: 100px;
+  color: white;
+}
