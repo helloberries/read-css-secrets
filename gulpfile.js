@@ -25,15 +25,6 @@ gulp.task('sass', function() {
     }))
 });
 
-gulp.task('myth', function () {
-  return gulp.src('app/myth/**/*.css')
-    .pipe(myth())
-    .pipe(gulp.dest('app/css'))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
-});
-
 gulp.task('autoprefixer', function () {
 	return gulp.src('app/css/**/*.css')
 		.pipe(autoprefixer({
@@ -97,8 +88,7 @@ gulp.task('deploy', function() {
     .pipe(ghPages());
 });
 
-gulp.task('serve', ['browserSync', 'images', 'useref', 'autoprefixer', 'myth', 'sass', 'js', 'jade', 'html'], function (){
-  gulp.watch('app/myth/**/*.css', ['myth']);
+gulp.task('serve', ['browserSync', 'images', 'useref', 'autoprefixer', 'sass', 'js', 'jade', 'html'], function (){
   gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch('app/js/*.js', ['js']);
   gulp.watch('app/jade/**/*.jade', ['jade']);
