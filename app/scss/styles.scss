@@ -17,6 +17,7 @@ div {
 // VARIABLES
 $brown: #655;
 // MIXINS
+// 波点
 @mixin polka ($size, $dot, $base, $accent) {
   background: $base;
   background-image:
@@ -24,6 +25,19 @@ $brown: #655;
       radial-gradient($accent $dot, transparent 0);
   background-size: $size $size;
   background-position: 0 0, $size/2 $size/2;
+}
+// 棋盘
+@mixin checkerboard ($size, $base, $accent: rgba(0,0,0, .5)) {
+  background: $base;
+  background-image:
+      linear-gradient(45deg,
+          $accent 25%, transparent 0,
+          transparent 75%, $accent 0),
+      linear-gradient(45deg,
+          $accent 25%, transparent 0,
+          transparent 75%, $accent 0);
+  background-position: 0 0, $size $size;
+  background-size: 2*$size, 2*$size;
 }
 
 .sewed-line {
@@ -79,8 +93,6 @@ $brown: #655;
 .polka {
   @include polka(30px, 30%, $brown, tan);
 }
-.checkboard {
-  background: #eee;
-  background-image: linear-gradient(45deg, #bbb 50%, transparent 0);
-  background-size: 30px 30px;
+.checkerboard {
+  @include checkerboard(15px, #eee);
 }
