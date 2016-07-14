@@ -39,6 +39,34 @@ $brown: #655;
   background-position: 0 0, $size $size;
   background-size: 2*$size, 2*$size;
 }
+// 切角效果
+@mixin beveled-corners($bg,
+        $tl:0, $tr:$tl, $br:$tl, $bl:$tr) {
+  background: $bg;
+  background:
+    linear-gradient(135deg, transparent $tl, $bg 0) top left,
+    linear-gradient(-135deg, transparent $tr, $bg 0) top right,
+    linear-gradient(-45deg, transparent $br, $bg 0) bottom right,
+    linear-gradient(45deg, transparent $bl, $bg 0) bottom left;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+}
+// 弧形切角
+@mixin scoop-corners($bg,
+        $tl:0, $tr:$tl, $br:$tl, $bl:$tr) {
+  background: $bg;
+  background:
+      radial-gradient(circle at top left,
+           transparent $tl, $bg 0) top left,
+       radial-gradient(circle at top right,
+            transparent $tr, $bg 0) top right,
+      radial-gradient(circle at bottom right,
+           transparent $br, $bg 0) bottom right,
+       radial-gradient(circle at bottom left,
+            transparent $bl, $bg 0) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
 
 .sewed-line {
   background: $brown;
@@ -95,4 +123,47 @@ $brown: #655;
 }
 .checkerboard {
   @include checkerboard(15px, #eee);
+}
+.vintage-envelope {
+  padding: 1em;
+  border: 1em solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              repeating-linear-gradient(-45deg, red 0, red 12.5%,
+              transparent 0, transparent 25%,
+              #58a 0, #58a 37.5%,
+              transparent 0, transparent 50%)
+              0 / 5em 5em;
+}
+@keyframes ants {
+  to { background-position: 100% }
+}
+.marching-ants {
+  padding: 1em;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    repeating-linear-gradient(-45deg,
+        black 0, black 25%, white 0, white 50%
+        ) 0 / .6em .6em;
+    animation: ants 12s linear infinite;
+}
+.footnote {
+  border-top: .2em solid transparent;
+  border-image: 100% 0 0 linear-gradient(90deg,
+                               currentColor 4em,
+                               transparent 0);
+  padding-top: 1em;
+}
+.half-ellipse {
+  background: #fb3;
+  width: 200px;
+  height: 200px;
+  border-radius: 50% 0 0;
+}
+.bevel-corners-gradients {
+  @include beveled-corners(#58a, 15px, 15px);
+}
+.scoop-corners {
+  margin-top: 1rem;
+  @include scoop-corners(#58a, 15px, 15px);
 }
